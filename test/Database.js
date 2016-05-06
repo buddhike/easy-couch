@@ -8,7 +8,9 @@ describe('Database document', function () {
   beforeEach(() => {
     _db = {
       insert: sinon.stub(),
-      get: sinon.stub()
+      get: sinon.stub(),
+      destroy: sinon.stub(),
+      head: sinon.stub()
     };
 
     _nano = sinon.stub().returns(_db);
@@ -78,6 +80,81 @@ describe('Database document', function () {
     });
 
     it('should return the document on success', done => {
+      const body = {};
+
+      _promise.then(b => {
+        b.should.equal(body);
+        done();
+      });
+
+      _callback(undefined, body);
+    });
+
+    it('should throw an exception on failure', done => {
+      const err = {};
+
+      _promise.catch(e => {
+        e.should.equal(err);
+        done();
+      });
+
+      _callback(err);
+    });
+  });
+
+  describe('destroy', () => {
+
+    let _doc, _rev, _promise, _callback;
+
+    beforeEach(() => {
+      _doc = {};
+      _rev = 'rev';
+      _promise = _database.destroy(_doc, _rev);
+      _callback = _db.destroy.getCall(0).args[2];
+    });
+
+    it('should call destroy with correct arguments', () => {
+      _db.destroy.calledWith(_doc, _rev).should.be.true;
+    });
+
+    it('should return the successful response', done => {
+      const body = {};
+
+      _promise.then(b => {
+        b.should.equal(body);
+        done();
+      });
+
+      _callback(undefined, body);
+    });
+
+    it('should throw an exception on failure', done => {
+      const err = {};
+
+      _promise.catch(e => {
+        e.should.equal(err);
+        done();
+      });
+
+      _callback(err);
+    });
+  });
+
+  describe('head', () => {
+
+    let _doc, _promise, _callback;
+
+    beforeEach(() => {
+      _doc = {};
+      _promise = _database.head(_doc);
+      _callback = _db.head.getCall(0).args[1];
+    });
+
+    it('should call destroy with correct arguments', () => {
+      _db.head.calledWith(_doc).should.be.true;
+    });
+
+    it('should return the successful response', done => {
       const body = {};
 
       _promise.then(b => {
