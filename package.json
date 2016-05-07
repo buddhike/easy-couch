@@ -1,6 +1,6 @@
 {
   "name": "easy-couch",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Easy wrappers for couchdb",
   "author": "Buddhike de Silva",
   "license": "MIT",
