@@ -4,9 +4,6 @@
   "description": "Easy wrappers for couchdb",
   "author": "Buddhike de Silva",
   "license": "MIT",
-  "files": [
-    "dist"
-  ],
   "main": "dist/index.js",
   "scripts": {
     "build": "babel lib/ -d dist/ --source-maps",
