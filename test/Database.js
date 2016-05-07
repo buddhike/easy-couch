@@ -21,7 +21,7 @@ describe('Database document', function () {
         '@noCallThru': true,
         __esModule: true
       }
-    }).Database;
+    }).default;
 
     _database = new Database('http://fa.ke');
   });
